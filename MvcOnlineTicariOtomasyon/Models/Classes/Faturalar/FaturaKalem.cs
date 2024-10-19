@@ -10,5 +10,6 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Faturalar
         public int Miktar { get; set; }
         public decimal BirimFiyat { get; set; }
         public decimal Tutar { get; set; }
+        public Fatura Fatura { get; set; }
     }
 }

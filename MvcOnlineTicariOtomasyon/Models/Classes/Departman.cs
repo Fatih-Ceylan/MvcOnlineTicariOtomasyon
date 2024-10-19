@@ -6,6 +6,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
     {
         [Key]
         public int DepartmanId { get; set; }
-        public string DepartmanAdi { get; set; }
+        public string? DepartmanAdi { get; set; }
+
+        public ICollection<Personel> Personels { get; set; }
     }
 }

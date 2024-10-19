@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MvcOnlineTicariOtomasyon.Models.Classes.Hareketler;
+using System.ComponentModel.DataAnnotations;
 
 namespace MvcOnlineTicariOtomasyon.Models.Classes
 {
@@ -22,5 +23,6 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         public string? UrunGorsel { get; set; }
 
         public Kategori Kategori { get; set; }
+        public SatisHareket SatisHareket { get; set; }
     }
 }
