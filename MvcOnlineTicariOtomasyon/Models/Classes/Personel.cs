@@ -1,5 +1,6 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Classes.Hareketler;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcOnlineTicariOtomasyon.Models.Classes
 {
@@ -7,8 +8,17 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
     {
         [Key]
         public int PersonelId { get; set; }
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(30)]
         public string? PersonelAd { get; set; }
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(30)]
         public string? PersonelSoyad { get; set; }
+        [Column(TypeName = "Varchar")]
+        [StringLength(250)]
+
         public string? PersonelGorsel { get; set; }
 
         public SatisHareket SatisHareket { get; set; }

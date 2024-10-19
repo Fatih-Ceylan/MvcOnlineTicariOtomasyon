@@ -1,5 +1,6 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Classes.Hareketler;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcOnlineTicariOtomasyon.Models.Classes
 {
@@ -7,9 +8,12 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
     {
         [Key]
         public int UrunId { get; set; }
-        
-        public string UrunAdi { get; set; }
 
+        [Column(TypeName ="Varchar")]
+        [StringLength(30)]
+        public string UrunAdi { get; set; }
+        [Column(TypeName = "Varchar")]
+        [StringLength(30)]
         public string Marka { get; set; }
 
         public short Stok { get; set; }
@@ -20,6 +24,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
 
         public bool Durum { get; set; }
 
+        [Column(TypeName = "Varchar")]
+        [StringLength(250)]
         public string? UrunGorsel { get; set; }
 
         public Kategori Kategori { get; set; }

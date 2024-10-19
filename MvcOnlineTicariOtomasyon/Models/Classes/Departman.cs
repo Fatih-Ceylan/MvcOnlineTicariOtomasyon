@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcOnlineTicariOtomasyon.Models.Classes
 {
@@ -6,6 +7,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
     {
         [Key]
         public int DepartmanId { get; set; }
+        [Column(TypeName = "Varchar")]
+        [StringLength(30)]
         public string? DepartmanAdi { get; set; }
 
         public ICollection<Personel> Personels { get; set; }
