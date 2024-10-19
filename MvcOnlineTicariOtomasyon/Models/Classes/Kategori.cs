@@ -8,5 +8,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         public int KategoriId { get; set; }
 
         public string KategoriAd { get; set; }
+
+        public ICollection<Urun> Urun { get; set; }
     }
 }

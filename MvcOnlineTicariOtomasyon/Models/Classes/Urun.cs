@@ -19,6 +19,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
 
         public bool Durum { get; set; }
 
-        public string UrunGorsel { get; set; }
+        public string? UrunGorsel { get; set; }
+
+        public Kategori Kategori { get; set; }
     }
 }
