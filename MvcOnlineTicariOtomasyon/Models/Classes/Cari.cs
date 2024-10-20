@@ -21,6 +21,6 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [StringLength(30)]
         public string? CariMail { get; set; }
 
-        public SatisHareket SatisHareket { get; set; }
+        public ICollection<SatisHareket>? SatisHareketleri { get; set; }
     }
 }

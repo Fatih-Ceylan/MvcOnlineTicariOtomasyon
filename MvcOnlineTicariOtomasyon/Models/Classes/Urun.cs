@@ -11,14 +11,17 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
 
         [Column(TypeName ="Varchar")]
         [StringLength(30)]
-        public string UrunAdi { get; set; }
+        public string? UrunAdi { get; set; }
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
-        public string Marka { get; set; }
+        public string? Marka { get; set; }
 
         public short Stok { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal AlisFiyat { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
 
         public decimal SatisFiyat { get; set; }
 
@@ -28,7 +31,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [StringLength(250)]
         public string? UrunGorsel { get; set; }
 
-        public Kategori Kategori { get; set; }
-        public SatisHareket SatisHareket { get; set; }
+        public Kategori? Kategori { get; set; }
+        public ICollection<SatisHareket>? SatisHareketleri { get; set; }
     }
 }

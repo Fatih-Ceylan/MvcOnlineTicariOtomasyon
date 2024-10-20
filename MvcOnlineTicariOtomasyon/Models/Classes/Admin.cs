@@ -7,14 +7,17 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
     {
         [Key]
         public int AdminId { get; set; }
+
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
-        public string KullaniciAd { get; set; }
+        public required string KullaniciAd { get; set; }
+
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
-        public string Sifre { get; set; }
+        public required string Sifre { get; set; }
+
         [Column(TypeName = "char")]
         [StringLength(1)]
-        public string Yetki { get; set; }
+        public required string Yetki { get; set; }
     }
 }

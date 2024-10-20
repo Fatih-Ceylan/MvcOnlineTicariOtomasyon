@@ -12,6 +12,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [StringLength(100)]
         public string? Aciklama { get; set; }
         public DateTime Tarih { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Tutar { get; set; }
     }
 }

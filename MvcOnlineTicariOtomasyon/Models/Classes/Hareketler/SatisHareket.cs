@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcOnlineTicariOtomasyon.Models.Classes.Hareketler
 {
@@ -11,11 +12,15 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Hareketler
         //personel
         public DateTime Tarih { get; set; }
         public int Adet { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Fiyat { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
         public decimal ToplamTutar { get; set; }
 
-        public ICollection<Urun> Uruns { get; set; }
-        public ICollection<Cari> Caris { get; set; }
-        public ICollection<Personel> Personels { get; set; }
+        public Urun? Urun { get; set; }
+        public Cari? Cari { get; set; }
+        public Personel? Personel { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
 
         public string? PersonelGorsel { get; set; }
 
-        public SatisHareket SatisHareket { get; set; }
-        public Departman Departman { get; set; }
+        public ICollection<SatisHareket>? SatisHareketleri { get; set; }
+        public Departman? Departman { get; set; }
     }
 }

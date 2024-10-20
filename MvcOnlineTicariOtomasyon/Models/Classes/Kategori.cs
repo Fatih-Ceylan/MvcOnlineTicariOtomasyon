@@ -11,8 +11,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
 
-        public string KategoriAd { get; set; }
+        public required string KategoriAd { get; set; }
 
-        public ICollection<Urun> Urun { get; set; }
+        public ICollection<Urun>? Urun { get; set; }
     }
 }
