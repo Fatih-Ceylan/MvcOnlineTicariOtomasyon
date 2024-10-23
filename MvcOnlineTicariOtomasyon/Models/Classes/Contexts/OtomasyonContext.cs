@@ -7,7 +7,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Context
 {
     public class OtomasyonContext : DbContext
     {
-        public OtomasyonContext(DbContextOptions options) : base(options)
+        public OtomasyonContext(DbContextOptions<OtomasyonContext> options) : base(options)
         {
         }
         public DbSet<Admin> Admin { get; set; }
