@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MvcOnlineTicariOtomasyon.Models;
-using MvcOnlineTicariOtomasyon.Models.Classes;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 using System.Diagnostics;
 
@@ -11,11 +9,12 @@ namespace MvcOnlineTicariOtomasyon.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly OtomasyonContext _context;
-        
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, OtomasyonContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
