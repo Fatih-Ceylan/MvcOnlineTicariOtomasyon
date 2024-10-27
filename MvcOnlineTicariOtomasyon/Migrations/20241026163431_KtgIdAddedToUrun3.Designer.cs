@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 
@@ -11,9 +12,11 @@ using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 namespace MvcOnlineTicariOtomasyon.Migrations
 {
     [DbContext(typeof(OtomasyonContext))]
-    partial class OtomasyonContextModelSnapshot : ModelSnapshot
+    [Migration("20241026163431_KtgIdAddedToUrun3")]
+    partial class KtgIdAddedToUrun3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -293,7 +296,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.Property<bool>("Durum")
                         .HasColumnType("bit");
 
-                    b.Property<int>("KategoriId")
+                    b.Property<int?>("KategoriId")
                         .HasColumnType("int");
 
                     b.Property<string>("Marka")
@@ -364,13 +367,9 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Urun", b =>
                 {
-                    b.HasOne("MvcOnlineTicariOtomasyon.Models.Classes.Kategori", "Kategori")
+                    b.HasOne("MvcOnlineTicariOtomasyon.Models.Classes.Kategori", null)
                         .WithMany("Urun")
-                        .HasForeignKey("KategoriId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Kategori");
+                        .HasForeignKey("KategoriId");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Cari", b =>
