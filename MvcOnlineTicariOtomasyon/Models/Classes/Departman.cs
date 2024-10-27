@@ -11,6 +11,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [StringLength(30)]
         public string? DepartmanAdi { get; set; }
 
+        public bool Durum { get; set; } = true;
+
         public ICollection<Personel>? Personels { get; set; }
     }
 }

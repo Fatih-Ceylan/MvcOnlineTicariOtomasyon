@@ -1,0 +1,22 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Classes
+@model Departman
+@{
+    ViewData["Title"] = "DepartmanGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h1>Departman Güncelleme</h1>
+<br />
+@using (Html.BeginForm("DepartmanGuncelle", "Departman", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.DepartmanAdi)
+        @Html.TextBoxFor(x => x.DepartmanAdi, new { @class = "form-group" })
+        @Html.HiddenFor(x => x.DepartmanId)
+        <br />
+        @Html.LabelFor(x => x.Durum)
+        @Html.CheckBoxFor(x => x.Durum, new { @class = "form-control" })
+    </div>
+    <button class="btn-warning">Güncelle</button>
+}
+

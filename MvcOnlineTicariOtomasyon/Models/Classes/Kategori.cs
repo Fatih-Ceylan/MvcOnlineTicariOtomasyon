@@ -6,6 +6,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
     public class Kategori
     {
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int KategoriId { get; set; }
 
         [Column(TypeName = "Varchar")]

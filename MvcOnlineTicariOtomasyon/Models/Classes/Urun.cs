@@ -9,7 +9,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [Key]
         public int UrunId { get; set; }
 
-        [Column(TypeName ="Varchar")]
+        [Column(TypeName = "Varchar")]
         [StringLength(30)]
         public string? UrunAdi { get; set; }
         [Column(TypeName = "Varchar")]
@@ -25,13 +25,15 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
 
         public decimal SatisFiyat { get; set; }
 
-        public bool Durum { get; set; }
+        public bool Durum { get; set; } = true;
 
         [Column(TypeName = "Varchar")]
         [StringLength(250)]
         public string? UrunGorsel { get; set; }
 
-        public Kategori? Kategori { get; set; }
+        public int KategoriId { get; set; }
+        public required virtual Kategori Kategori { get; set; }
+
         public ICollection<SatisHareket>? SatisHareketleri { get; set; }
     }
 }
