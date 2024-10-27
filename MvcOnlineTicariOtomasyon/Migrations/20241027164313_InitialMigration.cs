@@ -6,9 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MvcOnlineTicariOtomasyon.Migrations
 {
     /// <inheritdoc />
-#pragma warning disable CS8981 // The type name only contains lower-cased ascii characters. Such names may become reserved for the language.
-    public partial class init : Migration
-#pragma warning restore CS8981 // The type name only contains lower-cased ascii characters. Such names may become reserved for the language.
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -50,7 +48,8 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                 {
                     DepartmanId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DepartmanAdi = table.Column<string>(type: "Varchar(30)", maxLength: 30, nullable: true)
+                    DepartmanAdi = table.Column<string>(type: "Varchar(30)", maxLength: 30, nullable: true),
+                    Durum = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -113,7 +112,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     PersonelAd = table.Column<string>(type: "Varchar(30)", maxLength: 30, nullable: true),
                     PersonelSoyad = table.Column<string>(type: "Varchar(30)", maxLength: 30, nullable: true),
                     PersonelGorsel = table.Column<string>(type: "Varchar(250)", maxLength: 250, nullable: true),
-                    DepartmanId = table.Column<int>(type: "int", nullable: true)
+                    DepartmanId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -122,7 +121,8 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                         name: "FK_Personel_Departman_DepartmanId",
                         column: x => x.DepartmanId,
                         principalTable: "Departman",
-                        principalColumn: "DepartmanId");
+                        principalColumn: "DepartmanId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -161,7 +161,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     SatisFiyat = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Durum = table.Column<bool>(type: "bit", nullable: false),
                     UrunGorsel = table.Column<string>(type: "Varchar(250)", maxLength: 250, nullable: true),
-                    KategoriId = table.Column<int>(type: "int", nullable: true)
+                    KategoriId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -170,7 +170,8 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                         name: "FK_Urun_Kategori_KategoriId",
                         column: x => x.KategoriId,
                         principalTable: "Kategori",
-                        principalColumn: "KategoriId");
+                        principalColumn: "KategoriId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

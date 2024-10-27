@@ -91,6 +91,9 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("Varchar");
 
+                    b.Property<bool>("Durum")
+                        .HasColumnType("bit");
+
                     b.HasKey("DepartmanId");
 
                     b.ToTable("Departman");
@@ -257,7 +260,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonelId"));
 
-                    b.Property<int?>("DepartmanId")
+                    b.Property<int>("DepartmanId")
                         .HasColumnType("int");
 
                     b.Property<string>("PersonelAd")
@@ -357,7 +360,9 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                 {
                     b.HasOne("MvcOnlineTicariOtomasyon.Models.Classes.Departman", "Departman")
                         .WithMany("Personels")
-                        .HasForeignKey("DepartmanId");
+                        .HasForeignKey("DepartmanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Departman");
                 });

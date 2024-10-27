@@ -12,8 +12,8 @@ using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 namespace MvcOnlineTicariOtomasyon.Migrations
 {
     [DbContext(typeof(OtomasyonContext))]
-    [Migration("20241026161923_KtgIdAddedToUrun")]
-    partial class KtgIdAddedToUrun
+    [Migration("20241027164313_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,6 +93,9 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.Property<string>("DepartmanAdi")
                         .HasMaxLength(30)
                         .HasColumnType("Varchar");
+
+                    b.Property<bool>("Durum")
+                        .HasColumnType("bit");
 
                     b.HasKey("DepartmanId");
 
@@ -260,7 +263,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonelId"));
 
-                    b.Property<int?>("DepartmanId")
+                    b.Property<int>("DepartmanId")
                         .HasColumnType("int");
 
                     b.Property<string>("PersonelAd")
@@ -360,7 +363,9 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                 {
                     b.HasOne("MvcOnlineTicariOtomasyon.Models.Classes.Departman", "Departman")
                         .WithMany("Personels")
-                        .HasForeignKey("DepartmanId");
+                        .HasForeignKey("DepartmanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Departman");
                 });
