@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcOnlineTicariOtomasyon.Models.Classes;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using System.Security.Cryptography.Xml;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
@@ -67,9 +68,19 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public IActionResult DepartmanDetay(int id)
         {
+            var detay = c.Personel.Where(x => x.DepartmanId == id).ToList();
+            var dept = c.Departman.Where(x => x.DepartmanId == id).Select(y => y.DepartmanAdi).FirstOrDefault();
+            ViewBag.Dpt = dept;
+            return View(detay);
+        }
 
+        public IActionResult DepartmanPersonelSatis(int id)
+        {
+            var degerler = c.SatisHareketleri.Where(x => x.PersonelId == id).ToList();
+            var per = c.Personel.Where(x => x.PersonelId == id).Select(y => y.PersonelAd + " " + y.PersonelSoyad).FirstOrDefault();
+            ViewBag.dptPers = per;
 
-            return View();
+            return View(degerler);
         }
     }
 }
