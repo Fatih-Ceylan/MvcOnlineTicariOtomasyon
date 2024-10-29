@@ -9,18 +9,24 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [Key]
         public int CariId { get; set; }
         [Column(TypeName = "Varchar")]
-        [StringLength(30)]
-        public string? CariAd { get; set; }
+        [StringLength(30, ErrorMessage = "İsim 30 karakterden uzun olamaz")]
+        [Required(ErrorMessage = "İsim alanı boş geçilemez")]
+        public required string CariAd { get; set; }
+
         [Column(TypeName = "Varchar")]
-        [StringLength(30)]
+        [StringLength(30, ErrorMessage = "Soyisim 30 karakterden uzun olamaz")]
         public string? CariSoyad { get; set; }
+
         [Column(TypeName = "Varchar")]
-        [StringLength(15)]
+        [StringLength(15, ErrorMessage = "Şehir adı 15 karakterden uzun olamaz")]
         public string? CariSehir { get; set; }
+
         [Column(TypeName = "Varchar")]
-        [StringLength(30)]
+        [StringLength(30,ErrorMessage ="Mail adresi 30 karakterden uzun olamaz")]
         public string? CariMail { get; set; }
 
-        public ICollection<SatisHareket>? SatisHareketleri { get; set; }
+        public bool Durum { get; set; } = true;
+
+        public virtual ICollection<SatisHareket>? SatisHareketleri { get; set; }
     }
 }

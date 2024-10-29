@@ -8,16 +8,21 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Faturalar
     {
         [Key]
         public int FaturaKalemId { get; set; }
+
         [Column(TypeName = "Varchar")]
         [StringLength(100)]
         public string? Aciklama { get; set; }
+
         public int Miktar { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal BirimFiyat { get; set; }
 
+
         [Column(TypeName = "decimal(18,2)")]
         public decimal Tutar { get; set; }
-        public required Fatura Fatura { get; set; }
+
+        public int FaturaId { get; set; }
+        public required virtual Fatura Fatura { get; set; }
     }
 }

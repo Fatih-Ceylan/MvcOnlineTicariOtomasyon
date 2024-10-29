@@ -29,6 +29,6 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Faturalar
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
         public string? TeslimAlan { get; set; }
-        public ICollection<FaturaKalem>? FaturaKalemleri { get; set; }
+        public virtual ICollection<FaturaKalem>? FaturaKalemleri { get; set; }
     }
 }

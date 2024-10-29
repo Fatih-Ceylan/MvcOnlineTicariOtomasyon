@@ -7,20 +7,25 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Hareketler
     {
         [Key]
         public int SatisId { get; set; }
-        //ürün
-        //cari
-        //personel
+
         public DateTime Tarih { get; set; }
+
         public int Adet { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Fiyat { get; set; }
 
+
         [Column(TypeName = "decimal(18,2)")]
         public decimal ToplamTutar { get; set; }
 
-        public Urun? Urun { get; set; }
-        public Cari? Cari { get; set; }
-        public Personel? Personel { get; set; }
+        public int UrunId { get; set; }
+        public virtual required Urun Urun { get; set; }
+
+        public int CariId { get; set; }
+        public virtual required Cari Cari { get; set; }
+
+        public int PersonelId { get; set; }
+        public virtual required Personel Personel { get; set; }
     }
 }

@@ -13,6 +13,6 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
 
         public bool Durum { get; set; } = true;
 
-        public ICollection<Personel>? Personels { get; set; }
+        public virtual ICollection<Personel>? Personels { get; set; }
     }
 }

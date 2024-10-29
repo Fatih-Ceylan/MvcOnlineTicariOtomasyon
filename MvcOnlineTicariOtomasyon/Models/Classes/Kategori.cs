@@ -14,6 +14,6 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
 
         public required string KategoriAd { get; set; }
 
-        public ICollection<Urun>? Urun { get; set; }
+        public virtual ICollection<Urun>? Urun { get; set; }
     }
 }

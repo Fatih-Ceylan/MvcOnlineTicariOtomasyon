@@ -34,6 +34,6 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         public int KategoriId { get; set; }
         public required virtual Kategori Kategori { get; set; }
 
-        public ICollection<SatisHareket>? SatisHareketleri { get; set; }
+        public virtual ICollection<SatisHareket>? SatisHareketleri { get; set; }
     }
 }
