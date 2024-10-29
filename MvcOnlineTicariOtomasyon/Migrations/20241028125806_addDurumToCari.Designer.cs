@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 
@@ -11,9 +12,11 @@ using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 namespace MvcOnlineTicariOtomasyon.Migrations
 {
     [DbContext(typeof(OtomasyonContext))]
-    partial class OtomasyonContextModelSnapshot : ModelSnapshot
+    [Migration("20241028125806_addDurumToCari")]
+    partial class addDurumToCari
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +53,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.HasKey("AdminId");
 
-                    b.ToTable("Admin", (string)null);
+                    b.ToTable("Admin");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Cari", b =>
@@ -62,7 +65,6 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CariId"));
 
                     b.Property<string>("CariAd")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("Varchar");
 
@@ -83,7 +85,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.HasKey("CariId");
 
-                    b.ToTable("Cari", (string)null);
+                    b.ToTable("Cari");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Departman", b =>
@@ -103,7 +105,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.HasKey("DepartmanId");
 
-                    b.ToTable("Departman", (string)null);
+                    b.ToTable("Departman");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Faturalar.Fatura", b =>
@@ -144,7 +146,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.HasKey("FaturaId");
 
-                    b.ToTable("Fatura", (string)null);
+                    b.ToTable("Fatura");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Faturalar.FaturaKalem", b =>
@@ -175,7 +177,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.HasIndex("FaturaId");
 
-                    b.ToTable("FaturaKalemleri", (string)null);
+                    b.ToTable("FaturaKalemleri");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Gider", b =>
@@ -198,7 +200,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.HasKey("GiderId");
 
-                    b.ToTable("Gider", (string)null);
+                    b.ToTable("Gider");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Hareketler.SatisHareket", b =>
@@ -238,7 +240,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.HasIndex("UrunId");
 
-                    b.ToTable("SatisHareketleri", (string)null);
+                    b.ToTable("SatisHareketleri");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Kategori", b =>
@@ -256,7 +258,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.HasKey("KategoriId");
 
-                    b.ToTable("Kategori", (string)null);
+                    b.ToTable("Kategori");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Personel", b =>
@@ -286,7 +288,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.HasIndex("DepartmanId");
 
-                    b.ToTable("Personel", (string)null);
+                    b.ToTable("Personel");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Urun", b =>
@@ -328,7 +330,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.HasIndex("KategoriId");
 
-                    b.ToTable("Urun", (string)null);
+                    b.ToTable("Urun");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Faturalar.FaturaKalem", b =>
