@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MvcOnlineTicariOtomasyon.Models.Classes.Faturalar;
 using MvcOnlineTicariOtomasyon.Models.Classes.Hareketler;
 
@@ -25,5 +24,21 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Context
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
+
+        /// <summary>
+        /// savechange esnasında db trigger çakısmasını önlemek için
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SatisHareket>()
+                .ToTable(tb => tb.UseSqlOutputClause(false));
+        }
+        //todo: başka bir yöntem, arasındaki farkları araştır
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<SatisHareket>()
+        //        .ToTable(tb => tb.HasTrigger("SatisStokAzalt"));
+        //}
     }
 }

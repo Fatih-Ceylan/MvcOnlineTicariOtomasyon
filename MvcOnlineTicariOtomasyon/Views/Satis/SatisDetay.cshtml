@@ -1,13 +1,13 @@
-﻿@using MvcOnlineTicariOtomasyon.Models.Classes.Hareketler
-@model List<SatisHareket>
+﻿@model List<MvcOnlineTicariOtomasyon.Models.Classes.Hareketler.SatisHareket>
 @{
-    ViewData["Title"] = "DepartmanPersonelSatis";
+    ViewData["Title"] = "SatisDetay";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 <br />
-<h1>Departman Personel Satış</h1>
+<h1>Satış Detay</h1>
 <br />
+
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Personel Adı: @ViewBag.dptPers</li>
 </ol>
@@ -16,6 +16,7 @@
         <th>Satış ID</th>
         <th>Ürün</th>
         <th>Cari</th>
+        <th>Personel</th>
         <th>Fiyat</th>
         <th>Adet</th>
         <th>Toplam</th>
@@ -28,11 +29,13 @@
             <td>@x.SatisId</td>
             <td>@x.Urun.UrunAdi</td>
             <td>@x.Cari.CariAd @x.Cari.CariSoyad</td>
+            <td>@x.Personel.PersonelAd @x.Personel.PersonelSoyad</td>
             <td>@x.Fiyat</td>
             <td>@x.Adet</td>
             <td>@x.ToplamTutar</td>
             <td>@x.Tarih</td>
-            <td><a href="#" class="btn btn-secondary">Yazdır</a></td>
         </tr>
     }
+
 </table>
+<button class="btn btn-primary">Yazıdr</button>

@@ -10,6 +10,7 @@
     <base href="~/dist/" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" />
 </head>
 <body>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -62,7 +63,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-street-view"></i></div>
                             Personeller
                         </a>
-                        
+
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-lock"></i></div>
                             Admin
@@ -93,6 +94,10 @@
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Rapor & Fatura</div>
+                        <a class="nav-link" href="/Satis/Index/">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                            Satışlar
+                        </a>
                         <a class="nav-link" href="index.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                             Faturalar
@@ -106,9 +111,9 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-receipt"></i></div>
                             Giderler
                         </a>
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-taxi"></i></div>
-                            Hareketler
+                        <a class="nav-link" href="/Urun/UrunListesi">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                            PDF ~ Excel
                         </a>
                         <a class="nav-link" href="index.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></div>
@@ -122,11 +127,11 @@
                 </div>
             </nav>
         </div>
-        <div id="layoutSidenav_content" >
+        <div id="layoutSidenav_content">
             <main>
                 <div style="margin:20px">
-                   @RenderBody() 
-               </div>
+                    @RenderBody()
+                </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
@@ -142,8 +147,15 @@
             </footer>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tbl1').DataTable(); // DataTable'ınızı başlatmak için doğru tablo ID'sini kullanın
+        });
+    </script>
 </body>
 </html>

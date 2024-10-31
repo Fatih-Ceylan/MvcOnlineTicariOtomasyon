@@ -32,7 +32,7 @@
     @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.kategoriList, new { @class = "form-control", style = "width:25%;" })
     <br />
     @Html.LabelFor(x => x.Durum)
-    @Html.CheckBoxFor(x => x.Durum, new { @class = "form-control" })
+    @Html.CheckBoxFor(x => x.Durum, new { @class = "input-group" })
     <br />
     <button class="btn btn-warning">Güncelle</button>
 

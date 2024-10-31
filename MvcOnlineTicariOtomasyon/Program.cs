@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using System.Reflection.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +10,8 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 builder.Services.AddDbContext<OtomasyonContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
- 
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
