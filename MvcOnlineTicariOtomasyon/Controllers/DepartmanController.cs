@@ -7,15 +7,8 @@ using System.Security.Cryptography.Xml;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
-    public class DepartmanController : Controller
+    public class DepartmanController(OtomasyonContext c) : Controller
     {
-        private readonly OtomasyonContext c;
-
-        public DepartmanController(OtomasyonContext c)
-        {
-            this.c = c;
-        }
-
         public IActionResult Index()
         {
             var values = c.Departman.Where(x => x.Durum).ToList();
@@ -40,8 +33,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public IActionResult DepartmanSil(int id)
         {
             var deger = c.Departman.Find(id);
-            deger.Durum = false;
-            c.SaveChanges();
+            if (deger is not null)
+            {
+                deger.Durum = false;
+                c.SaveChanges();
+            }
 
             return RedirectToAction("Index");
         }

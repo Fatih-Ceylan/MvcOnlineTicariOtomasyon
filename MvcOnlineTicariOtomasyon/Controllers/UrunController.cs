@@ -6,15 +6,8 @@ using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
-    public class UrunController : Controller
+    public class UrunController(OtomasyonContext c) : Controller
     {
-        private readonly OtomasyonContext c;
-
-        public UrunController(OtomasyonContext c)
-        {
-            this.c = c;
-        }
-
         public IActionResult Index()
         {
             var urunler = c.Urun.Include(k => k.Kategori).Where(x => x.Durum).ToList();
@@ -46,8 +39,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public IActionResult UrunSil(int id)
         {
             var deger = c.Urun.Find(id);
-            deger.Durum = false;
-            c.SaveChanges();
+            if (deger is not null)
+            {
+                deger.Durum = false;
+                c.SaveChanges();
+            }
 
             return RedirectToAction("Index");
         }

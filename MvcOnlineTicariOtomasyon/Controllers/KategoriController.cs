@@ -5,14 +5,9 @@ using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
-    public class KategoriController : Controller
+    public class KategoriController(OtomasyonContext context) : Controller
     {
-        private readonly OtomasyonContext _context;
-
-        public KategoriController(OtomasyonContext context)
-        {
-            _context = context;
-        }
+        private readonly OtomasyonContext _context = context;
 
         public IActionResult Index()
         {
@@ -39,8 +34,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public IActionResult KategoriSil(int id)
         {
             var kategori = _context.Kategori.Find(id);
-            _context.Kategori.Remove(kategori);
-            _context.SaveChanges();
+            if (kategori is not null)
+            {
+                _context.Kategori.Remove(kategori);
+                _context.SaveChanges();
+            }
 
             return RedirectToAction("Index");
         }
@@ -48,14 +46,17 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public IActionResult KategoriGetir(int id)
         {
             var kategori = _context.Kategori.Find(id);
-            return View("KategoriGetir",kategori);
+            return View("KategoriGetir", kategori);
         }
 
         public IActionResult KategoriGuncelle(Kategori k)
         {
             var kategori = _context.Kategori.Find(k.KategoriId);
-            kategori.KategoriAd = k.KategoriAd;
-            _context.SaveChanges();
+            if (kategori is not null)
+            {
+                kategori.KategoriAd = k.KategoriAd;
+                _context.SaveChanges();
+            }
 
             return RedirectToAction("Index");
         }

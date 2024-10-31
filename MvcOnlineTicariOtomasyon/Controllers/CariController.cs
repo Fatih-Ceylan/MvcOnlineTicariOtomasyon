@@ -4,14 +4,9 @@ using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
-    public class CariController : Controller
+    public class CariController(OtomasyonContext c) : Controller
     {
-        private readonly OtomasyonContext c;
-
-        public CariController(OtomasyonContext c)
-        {
-            this.c = c;
-        }
+        private readonly OtomasyonContext c = c;
 
         public IActionResult Index()
         {
@@ -36,8 +31,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public IActionResult CariSil(int id)
         {
             var deger = c.Cari.Find(id);
-            deger.Durum = false;
-            c.SaveChanges();
+            if (deger is not null)
+            {
+                deger.Durum = false;
+                c.SaveChanges();
+            }
 
             return RedirectToAction("Index");
         }
