@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 
@@ -11,9 +12,11 @@ using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 namespace MvcOnlineTicariOtomasyon.Migrations
 {
     [DbContext(typeof(OtomasyonContext))]
-    partial class OtomasyonContextModelSnapshot : ModelSnapshot
+    [Migration("20241102160257_changeSaatDataType")]
+    partial class changeSaatDataType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,10 +141,6 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.Property<string>("TeslimEden")
                         .HasMaxLength(30)
                         .HasColumnType("Varchar");
-
-                    b.Property<decimal>("Toplam")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("VergiDairesi")
                         .HasMaxLength(60)
