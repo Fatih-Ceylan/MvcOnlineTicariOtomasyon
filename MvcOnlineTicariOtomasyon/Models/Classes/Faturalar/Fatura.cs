@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcOnlineTicariOtomasyon.Models.Classes.Faturalar
@@ -19,8 +20,11 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Faturalar
 
         [Column(TypeName = "Varchar")]
         [StringLength(60)]
-        public  string? VergiDairesi { get; set; }
-        public DateTime Saat { get; set; }
+        public string? VergiDairesi { get; set; }
+
+        [Column(TypeName = "Char")]
+        [StringLength(5)]
+        public string? Saat { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
@@ -29,6 +33,10 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Faturalar
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
         public string? TeslimAlan { get; set; }
+
+        [Precision(18, 2)]
+        public decimal Toplam { get; set; }
+
         public virtual ICollection<FaturaKalem>? FaturaKalemleri { get; set; }
     }
 }
