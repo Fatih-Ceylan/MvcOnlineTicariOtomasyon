@@ -7,10 +7,10 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>MVC Core ile Online Ticari Otomasyon</title>
-    <base href="~/dist/" />
+    <base href="@Url.Content("~/dist/")" />
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -115,7 +115,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
                             PDF ~ Excel
                         </a>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="/Istatistik/Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></div>
                             İstatistikler
                         </a>
@@ -153,6 +153,7 @@
     <script src="js/scripts.js"></script>
 
     <script>
+        let a;
         $(document).ready(function () {
             $('#tbl1').DataTable(); // DataTable'ınızı başlatmak için doğru tablo ID'sini kullanın
         });
