@@ -1,0 +1,33 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Classes
+@model List<MvcOnlineTicariOtomasyon.Models.Classes.Faturalar.FaturaKalem>
+@{
+    ViewData["Title"] = "FaturaDetay";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Fatura Kalemleri Sayfası</h1>
+<br />
+ 
+<table class="table table-hover">
+    <tr>
+        <th>Fatura Kalem ID</th>
+        <th>Açıklama</th>
+        <th>Miktar</th>
+        <th>Birim Fiyat</th>
+        <th>Tutar</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.FaturaKalemId</td>
+            <td>@x.Aciklama</td>
+            <td>@x.Miktar</td>
+            <td>@x.BirimFiyat</td>
+            <td>@x.Tutar</td>
+            <td>@*<a href="/Departman/DepartmanPersonelSatis/@x.PersonelId" class="btn btn-outline-success">Satışlar</a>*@</td>
+        </tr>
+    }
+</table>
+
+ <a href="/Fatura/YeniKalem" class="btn btn-info"> Yeni Kalem Girişi</a>
+
