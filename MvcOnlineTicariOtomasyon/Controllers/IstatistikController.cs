@@ -49,7 +49,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var deger11 = c.Urun.Count(c => c.UrunAdi == "Laptop").ToString();
             ViewBag.d11 = deger11;
 
-            //En fazla ürün çeşidine sahip marka
+            //En fazla ürün çeşidine sahip marka 
             var deger12 = c.Urun.GroupBy(x => x.Marka)
                 .OrderByDescending(z => z.Count())
                 .Select(y => y.Key)
