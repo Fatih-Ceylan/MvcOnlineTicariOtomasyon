@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using MvcOnlineTicariOtomasyon.Models.Classes;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
-using System.Security.Cryptography.Xml;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
