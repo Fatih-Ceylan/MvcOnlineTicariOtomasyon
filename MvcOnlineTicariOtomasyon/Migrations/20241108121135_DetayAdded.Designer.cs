@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 
@@ -11,9 +12,11 @@ using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 namespace MvcOnlineTicariOtomasyon.Migrations
 {
     [DbContext(typeof(OtomasyonContext))]
-    partial class OtomasyonContextModelSnapshot : ModelSnapshot
+    [Migration("20241108121135_DetayAdded")]
+    partial class DetayAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,12 +127,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("Varchar");
 
-                    b.Property<int?>("UrunId")
-                        .HasColumnType("int");
-
                     b.HasKey("DetayId");
-
-                    b.HasIndex("UrunId");
 
                     b.ToTable("Detay");
                 });
@@ -366,15 +364,6 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.ToTable("Urun");
                 });
 
-            modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Detay", b =>
-                {
-                    b.HasOne("MvcOnlineTicariOtomasyon.Models.Classes.Urun", "Urun")
-                        .WithMany("UrunDetay")
-                        .HasForeignKey("UrunId");
-
-                    b.Navigation("Urun");
-                });
-
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Faturalar.FaturaKalem", b =>
                 {
                     b.HasOne("MvcOnlineTicariOtomasyon.Models.Classes.Faturalar.Fatura", "Fatura")
@@ -463,8 +452,6 @@ namespace MvcOnlineTicariOtomasyon.Migrations
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Urun", b =>
                 {
                     b.Navigation("SatisHareketleri");
-
-                    b.Navigation("UrunDetay");
                 });
 #pragma warning restore 612, 618
         }

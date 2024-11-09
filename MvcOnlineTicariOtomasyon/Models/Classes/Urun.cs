@@ -35,5 +35,6 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         public required virtual Kategori Kategori { get; set; }
 
         public virtual ICollection<SatisHareket>? SatisHareketleri { get; set; }
+        public virtual ICollection<Detay>? UrunDetay { get; set; }
     }
 }
