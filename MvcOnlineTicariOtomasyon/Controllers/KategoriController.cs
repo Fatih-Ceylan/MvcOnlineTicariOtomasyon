@@ -45,6 +45,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public IActionResult KategoriGetir(int id)
         {
             var kategori = _context.Kategori.Find(id);
+
             return View("KategoriGetir", kategori);
         }
 

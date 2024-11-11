@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcOnlineTicariOtomasyon.Models.Classes;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
@@ -31,6 +30,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                                               Value = x.DepartmanId.ToString()
                                           }).ToList();
             ViewBag.departmanList = deger;
+
             return View();
         }
 
