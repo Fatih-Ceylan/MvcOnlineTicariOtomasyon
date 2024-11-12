@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using MvcOnlineTicariOtomasyon.Services;
 using System.Reflection.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 //builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+builder.Services.AddScoped<DataService>();
 
 builder.Services.AddDbContext<OtomasyonContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));

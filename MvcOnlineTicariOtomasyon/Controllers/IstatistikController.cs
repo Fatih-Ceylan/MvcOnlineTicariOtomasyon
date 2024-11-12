@@ -1,17 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using MvcOnlineTicariOtomasyon.Services;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
-    public class IstatistikController : Controller
+    public class IstatistikController(OtomasyonContext c, DataService dataService) : Controller
     {
-        private OtomasyonContext c;
-
-        public IstatistikController(OtomasyonContext c)
-        {
-            this.c = c;
-        }
-
         public IActionResult Index()
         {
             var deger1 = c.Cari.Count();
@@ -62,7 +56,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                 .OrderByDescending(z => z.Count())
                 .Select(y => y.Key)
                 .FirstOrDefault()))
-                .Select(k=>k.UrunAdi).FirstOrDefault();
+                .Select(k => k.UrunAdi).FirstOrDefault();
             ViewBag.d13 = deger13;
 
             var deger14 = c.SatisHareketleri.Sum(c => c.ToplamTutar).ToString();
@@ -76,6 +70,54 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             ViewBag.d16 = deger16;
 
             return View();
+        }
+
+        public IActionResult BasitTablolar()
+        {
+            // Ana sorgu: Şehir gruplama
+            var sorgu = dataService.GetSehirGruplari();
+            // Partial view için model hazırlama (Departman bilgisi)
+            ViewData["DepartmanListe"] = dataService.GetDepartmanGruplari();
+            ViewData["CariListe"] = dataService.GetCariListesi();
+            ViewData["UrunListe"] = dataService.GetUrunListesi();
+            ViewData["MarkaListe"] = dataService.GetMarkaListesi();
+
+            return View(sorgu);
+        }
+        public IActionResult PersDeptPartial()
+        {
+
+            var sorgu2 = dataService.GetDepartmanGruplari();
+
+            return PartialView(sorgu2);
+        }
+
+        public IActionResult Partial2()
+        {
+            var sorgu = dataService.GetCariListesi();
+
+            return PartialView(sorgu);
+        }
+
+        public IActionResult Partial3()
+        {
+            var sorgu = dataService.GetUrunListesi();
+
+            return PartialView(sorgu);
+        }
+
+        public IActionResult Partial4()
+        {
+           var sorgu = dataService.GetMarkaListesi();
+
+            return PartialView(sorgu);
+        }
+
+        public IActionResult Partial5()
+        {
+            var sorgu = dataService.GetUrunListesi();
+
+            return PartialView(sorgu);
         }
     }
 }
