@@ -20,6 +20,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Context
         public DbSet<Urun> Urun { get; set; }
         public DbSet<Kategori> Kategori { get; set; }
         public DbSet<Detay> Detay { get; set; }
+        public DbSet<Yapilacak> Yapilacaklar { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
