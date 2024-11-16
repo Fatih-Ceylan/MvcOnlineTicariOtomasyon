@@ -22,10 +22,14 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         public string? CariSehir { get; set; }
 
         [Column(TypeName = "Varchar")]
-        [StringLength(30,ErrorMessage ="Mail adresi 30 karakterden uzun olamaz")]
+        [StringLength(30, ErrorMessage = "Mail adresi 30 karakterden uzun olamaz")]
         public string? CariMail { get; set; }
 
         public bool Durum { get; set; } = true;
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(15)]
+        public string? CariSifre { get; set; }
 
         public virtual ICollection<SatisHareket>? SatisHareketleri { get; set; }
     }
