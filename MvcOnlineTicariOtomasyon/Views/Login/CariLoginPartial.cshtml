@@ -1,0 +1,21 @@
+﻿<div class="login-form login-form-left">
+    <div class="agile-row">
+        <h3>Cari Girişi Formu</h3>
+        <span class="fa fa-lock"></span>
+        <div class="clear"></div>
+        <div class="login-agileits-top">
+            @if (!string.IsNullOrEmpty(ViewBag.Error as string))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.Error
+                </div>
+            }
+
+            <form action="/Login/CariLoginPartial" method="post">
+                <input type="text" name="CariMail" placeholder="Email" required style="width: 100%; border-radius: 5px" />
+                <input type="password" name="CariSifre" placeholder="Password" required style="width: 100%; border-radius: 5px" />
+                <input type="submit" value="Giriş Yap" style="border-radius: 5px">
+            </form>
+        </div>
+    </div>
+</div>
