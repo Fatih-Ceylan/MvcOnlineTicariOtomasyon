@@ -8,7 +8,7 @@ using MvcOnlineTicariOtomasyon.Services;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
-    public class LoginController(OtomasyonContext c, ClaimService cs) : Controller
+    public class LoginController(OtomasyonContext c, ClaimService cs, IHttpContextAccessor httpContextAccessor) : Controller
     {
         public IActionResult Index()
         {
@@ -45,26 +45,23 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public IActionResult CariLoginPartial(Cari p)
         {
-            var bilgiler = c.Cari.FirstOrDefault(x => x.CariMail == p.CariMail && x.CariSifre == p.CariSifre);
-            if (bilgiler == null)
+            var bilgiler = c.Cari?.FirstOrDefault(x => x.CariMail == p.CariMail && x.CariSifre == p.CariSifre);
+            if (bilgiler is not null)
             {
-                ViewBag.Error = "Kullanıcı adı veya şifre yanlış";
-                return PartialView("CariLoginPartial", p); // Hatalarla birlikte partial view döndür
+                var claimsIdentity = cs.CreateClaimsIdentity(bilgiler);
+
+                // Kimlik doğrulama çerezi oluştur
+                httpContextAccessor?.HttpContext?.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity));
+
+                httpContextAccessor?.HttpContext?.Session?.SetString("cariMail", bilgiler?.CariMail ?? "");
+
+                return Json(new { success = true, redirectUrl = Url.Action("Index", "CariPanel") });
             }
 
-            //var claims = new List<Claim>
-            //    {
-            //        new Claim(ClaimTypes.Name, bilgiler.CariAd),
-            //        new Claim("CustomClaim", "ExampleValue") // Özel claim ekleyebilirsiniz
-            //    };
+            ViewBag.Error = "Kullanıcı adı veya şifre yanlış";
 
-            var claimsIdentity = cs.CreateClaimsIdentity(bilgiler);
-
-            // Kimlik doğrulama çerezi oluştur
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-            new ClaimsPrincipal(claimsIdentity));
-
-            return Json(new { success = true, redirectUrl = Url.Action("Index", "CariPanel") });
+            return PartialView("CariLoginPartial", p); // Hatalarla birlikte partial view döndür
         }
     }
 }
