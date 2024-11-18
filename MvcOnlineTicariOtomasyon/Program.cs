@@ -9,9 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 //builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddHttpContextAccessor();
+//builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddScoped<DataService>();
 builder.Services.AddScoped<ClaimService>();
+builder.Services.AddScoped<SessionService>();
 
 builder.Services.AddDbContext<OtomasyonContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
@@ -21,10 +24,16 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Login/Index";
         options.LogoutPath = "/Login/Logout";
-        options.Cookie.Name = "CariCookie";
         options.ExpireTimeSpan = TimeSpan.FromSeconds(20);
     });
 builder.Services.AddAuthorization();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -40,7 +49,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
