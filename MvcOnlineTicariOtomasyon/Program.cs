@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 using MvcOnlineTicariOtomasyon.Services;
@@ -10,9 +11,20 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 //builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddScoped<DataService>();
+builder.Services.AddScoped<ClaimService>();
 
 builder.Services.AddDbContext<OtomasyonContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/Index";
+        options.LogoutPath = "/Login/Logout";
+        options.Cookie.Name = "CariCookie";
+        options.ExpireTimeSpan = TimeSpan.FromSeconds(20);
+    });
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
