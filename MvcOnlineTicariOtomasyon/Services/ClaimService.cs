@@ -17,7 +17,8 @@ namespace MvcOnlineTicariOtomasyon.Services
                 { "CariAd", ClaimTypes.Name },    // Map to Name claim
                 { "CariMail", ClaimTypes.Email },  // Map to Email claim
                 { "PersonelAd", ClaimTypes.Name }, // Map to Name (or another appropriate claim type)
-                { "PersonelMail", ClaimTypes.Email } // Map to Email (or another claim type)
+                { "PersonelMail", ClaimTypes.Email }, // Map to Email (or another claim type)
+                { "KullaniciAd", ClaimTypes.Name },
                 // Add other mappings as needed
             };
 

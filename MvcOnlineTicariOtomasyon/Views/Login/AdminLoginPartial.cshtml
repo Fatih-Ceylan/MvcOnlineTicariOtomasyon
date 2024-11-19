@@ -1,0 +1,19 @@
+﻿<div class="login-form login-form-left">
+    <div class="agile-row">
+        <h3>Personel Girişi</h3>
+        <div class="clear"></div>
+        <div class="login-agileits-top">
+            @if (!string.IsNullOrEmpty(ViewBag.Error as string))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.Error
+                </div>
+            }
+            <form action="/Login/AdminLoginPartial" method="post">
+                <input type="text" class="name" name="KullaniciAd" Placeholder="Kullanıcı Adı" required="" />
+                <input type="password" class="password" name="sifre" Placeholder="Şifre" required="" />
+                <input type="submit" value="Get Notified">
+            </form>
+        </div>
+    </div>
+</div>

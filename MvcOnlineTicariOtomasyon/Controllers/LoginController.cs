@@ -63,5 +63,32 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
             return PartialView("CariLoginPartial", p); // Hatalarla birlikte partial view döndür
         }
+
+        [HttpGet]
+        public IActionResult AdminLoginPartial()
+        {
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult AdminLoginPartial(Admin p)
+        {
+            var bilgiler = c.Admin.FirstOrDefault(x => x.Sifre == p.Sifre && x.KullaniciAd == p.KullaniciAd);
+
+            if (bilgiler is not null)
+            {
+                var claimsIdentity = cs.CreateClaimsIdentity(bilgiler);
+                httpContextAccessor?.HttpContext?.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+               new ClaimsPrincipal(claimsIdentity));
+
+                httpContextAccessor?.HttpContext?.Session?.SetString("KullaniciAd", bilgiler?.KullaniciAd ?? "");
+
+                return Json(new { success = true, redirectUrl = Url.Action("Index", "Kategori") });
+            }
+
+            ViewBag.Error = "Kullanıcı adı veya şifre yanlış";
+
+            return PartialView("AdminLoginPartial", p); // Hatalarla birlikte partial view döndür
+        }
     }
 }
