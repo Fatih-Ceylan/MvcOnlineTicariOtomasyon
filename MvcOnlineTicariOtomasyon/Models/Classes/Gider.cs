@@ -8,7 +8,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [Key]
         public int GiderId { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(100)]
         public string? Aciklama { get; set; }
         public DateTime Tarih { get; set; }

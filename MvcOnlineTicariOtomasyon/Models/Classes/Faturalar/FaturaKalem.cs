@@ -9,7 +9,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Faturalar
         [Key]
         public int FaturaKalemId { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(100)]
         public string? Aciklama { get; set; }
 

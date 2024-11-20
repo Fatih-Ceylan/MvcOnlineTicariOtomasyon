@@ -9,7 +9,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int KategoriId { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
 
         public required string KategoriAd { get; set; }

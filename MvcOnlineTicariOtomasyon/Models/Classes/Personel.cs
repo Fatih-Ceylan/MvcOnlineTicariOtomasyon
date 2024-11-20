@@ -10,17 +10,17 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [Key]
         public int PersonelId { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         [DisplayName("Personel Adı")]
         public string? PersonelAd { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         [DisplayName("Personel Soyadı")]
 
         public string? PersonelSoyad { get; set; }
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         [DisplayName("Personel Görsel")]
         public string? PersonelGorsel { get; set; }

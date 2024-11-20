@@ -8,11 +8,11 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [Key]
         public int DetayId { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         public required string UrunAd { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(2000)]
         public required string UrunBilgi { get; set; }
 

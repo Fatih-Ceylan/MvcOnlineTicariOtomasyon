@@ -7,7 +7,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
     {
         [Key]
         public int DepartmanId { get; set; }
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         public string? DepartmanAdi { get; set; }
 

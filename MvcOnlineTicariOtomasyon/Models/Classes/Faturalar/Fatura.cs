@@ -9,16 +9,16 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Faturalar
         [Key]
         public int FaturaId { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(10)]
         public required string FaturaSeriNo { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         public required string FaturaSıraNo { get; set; }
         public DateTime Tarih { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(60)]
         public string? VergiDairesi { get; set; }
 
@@ -26,11 +26,11 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Faturalar
         [StringLength(5)]
         public string? Saat { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         public string? TeslimEden { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         public string? TeslimAlan { get; set; }
 

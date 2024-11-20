@@ -9,10 +9,10 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [Key]
         public int UrunId { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         public string? UrunAdi { get; set; }
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         public string? Marka { get; set; }
 
@@ -27,7 +27,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
 
         public bool Durum { get; set; } = true;
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         public string? UrunGorsel { get; set; }
 

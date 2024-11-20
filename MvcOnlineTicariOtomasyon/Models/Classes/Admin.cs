@@ -8,11 +8,11 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes
         [Key]
         public int AdminId { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         public required string KullaniciAd { get; set; }
 
-        [Column(TypeName = "Varchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(30)]
         public required string Sifre { get; set; }
 
