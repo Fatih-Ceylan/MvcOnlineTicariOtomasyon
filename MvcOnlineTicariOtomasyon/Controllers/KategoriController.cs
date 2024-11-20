@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcOnlineTicariOtomasyon.Models.Classes;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using X.PagedList.Extensions;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
@@ -8,9 +9,9 @@ namespace MvcOnlineTicariOtomasyon.Controllers
     {
         private readonly OtomasyonContext _context = context;
 
-        public IActionResult Index()
+        public IActionResult Index(int sayfa = 1)
         {
-            var values = _context.Kategori.ToList();
+            var values = _context.Kategori.ToList().ToPagedList(sayfa, 4);
             return View(values);
         }
 

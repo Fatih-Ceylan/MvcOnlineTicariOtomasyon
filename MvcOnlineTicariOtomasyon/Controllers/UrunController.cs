@@ -8,9 +8,18 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 {
     public class UrunController(OtomasyonContext c) : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string p)
         {
-            var urunler = c.Urun.Include(k => k.Kategori).Where(x => x.Durum).ToList();
+            var urunler = c.Urun.Where(x => x.Durum).ToList();
+            if (!string.IsNullOrEmpty(p))
+            {
+                var uruns = urunler
+                            .Where(x => x.UrunAdi != null &&
+                             x.UrunAdi.Contains(p, StringComparison.OrdinalIgnoreCase))
+                            .ToList();
+
+                return View(uruns);
+            }
             return View(urunler);
         }
 
