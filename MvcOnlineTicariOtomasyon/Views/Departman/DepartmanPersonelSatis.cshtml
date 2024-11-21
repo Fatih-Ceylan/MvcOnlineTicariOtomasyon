@@ -13,7 +13,6 @@
 </ol>
 <table class="table table-condensed">
     <tr>
-        <th>Satış ID</th>
         <th>Ürün</th>
         <th>Cari</th>
         <th>Fiyat</th>
@@ -25,13 +24,12 @@
     {
 
         <tr>
-            <td>@x.SatisId</td>
             <td>@x.Urun.UrunAdi</td>
             <td>@x.Cari.CariAd @x.Cari.CariSoyad</td>
-            <td>@x.Fiyat</td>
+            <td>@x.Fiyat ₺</td>
             <td>@x.Adet</td>
-            <td>@x.ToplamTutar</td>
-            <td>@x.Tarih</td>
+            <td>@x.ToplamTutar ₺</td>
+            <td>@x.Tarih.ToShortDateString()</td>
             <td><a href="#" class="btn btn-secondary">Yazdır</a></td>
         </tr>
     }

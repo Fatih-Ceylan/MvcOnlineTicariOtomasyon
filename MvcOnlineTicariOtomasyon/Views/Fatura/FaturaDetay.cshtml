@@ -10,7 +10,6 @@
  
 <table class="table table-hover">
     <tr>
-        <th>Fatura Kalem ID</th>
         <th>Açıklama</th>
         <th>Miktar</th>
         <th>Birim Fiyat</th>
@@ -19,11 +18,10 @@
     @foreach (var x in Model)
     {
         <tr>
-            <td>@x.FaturaKalemId</td>
             <td>@x.Aciklama</td>
             <td>@x.Miktar</td>
-            <td>@x.BirimFiyat</td>
-            <td>@x.Tutar</td>
+            <td>@x.BirimFiyat ₺</td>
+            <td>@x.Tutar ₺</td>
             <td>@*<a href="/Departman/DepartmanPersonelSatis/@x.PersonelId" class="btn btn-outline-success">Satışlar</a>*@</td>
         </tr>
     }

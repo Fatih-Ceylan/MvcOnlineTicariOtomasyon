@@ -7,9 +7,7 @@
 <div style="margin:20px">
     <table class="table table-bordered">
         <tr>
-            <th>ID</th>
-            <th> Seri No</th>
-            <th>Sıra No</th>
+            <th>Seri Sıra No</th>
             <th>Vergi Dairesi</th>
             <th>Tarih</th>
             <th>Saat</th>
@@ -23,19 +21,13 @@
         {
             <tr>
                 <td>
-                    @k.FaturaId
-                </td>
-                <td>
-                    @k.FaturaSeriNo
-                </td>
-                <td>
-                    @k.FaturaSıraNo
+                    @k.FaturaSeriNo @k.FaturaSıraNo
                 </td>
                 <td>
                     @k.VergiDairesi
                 </td>
                 <td>
-                    @k.Tarih
+                    @k.Tarih.ToShortDateString()
                 </td>
                 <td>
                     @k.Saat
@@ -47,7 +39,7 @@
                     @k.TeslimAlan
                 </td>
                 <td>
-                    @k.Toplam
+                    @k.Toplam ₺
                 </td>
                 <td><a href="/Fatura/FaturaGetir/@k.FaturaId" class="btn btn-warning">Güncelle</a></td>
                 <td><a href="/Fatura/FaturaDetay/@k.FaturaId" class="btn btn-info">Fatura Kalemleri</a></td>
