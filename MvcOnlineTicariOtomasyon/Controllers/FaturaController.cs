@@ -82,8 +82,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         }
 
         [HttpGet]
-        public IActionResult YeniKalem()
+        public IActionResult YeniKalem(int? id)
         {
+            int faturaId = c.Fatura.Where(x=>x.FaturaId == id).Select(y=>y.FaturaId).FirstOrDefault();
+            ViewBag.FaturaId = faturaId;
+
             return View();
         }
 

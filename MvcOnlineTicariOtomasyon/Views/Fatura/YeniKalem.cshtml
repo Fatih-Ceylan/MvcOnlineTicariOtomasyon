@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 <br />
-<h2>Yeni Fatura Sayfası</h2>
+<h2>Yeni Kalem Girişi</h2>
 <br />
 <form class="form-group" method="post">
     @Html.LabelFor(x => x.Aciklama)
@@ -19,9 +19,27 @@
     @Html.LabelFor(x => x.Tutar)
     @Html.TextBoxFor(x => x.Tutar, new { @class = "form-control", style = "width:25%;" })
     <br />
-    @Html.LabelFor(x => x.FaturaId)
-    @Html.TextBoxFor(x => x.FaturaId, new { @class = "form-control", style = "width:25%;" })
-    <br />
+    @{
+        int faturaIdValue = ViewBag.FaturaId ?? 0;
 
+    }
+    @Html.LabelFor(x => x.FaturaId)
+    @Html.TextBoxFor(x => x.FaturaId, new { @class = "form-control", style = "width:25%;", value = faturaIdValue })
+    <br />
     <button class="btn btn-primary">Kaydet</button>
 </form>
+
+
+<script>
+    // Sayfa yüklendikten sonra ViewBag değerini almak ve input'a atamak
+   document.addEventListener("DOMContentLoaded", function() {
+        var faturaId = '@ViewBag.FaturaId';
+        var faturaInput = document.getElementById("FaturaId");
+
+        // Eğer faturaId doluysa, input'u readonly yap
+        if (faturaId) {
+            faturaInput.value = faturaId;  // FaturaId'yi manuel olarak set ediyoruz
+            faturaInput.setAttribute("readonly", true);  // Readonly yapıyoruz
+        }
+    });
+</script>
