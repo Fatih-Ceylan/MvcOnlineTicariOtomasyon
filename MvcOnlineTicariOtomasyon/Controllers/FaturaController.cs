@@ -62,8 +62,23 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public IActionResult FaturaDetay(int id)
         {
             var fatura = c.FaturaKalemleri.Where(x => x.FaturaId == id).ToList();
-            ViewBag.faturaDetay = fatura;
             return View(fatura);
+        }
+
+        [HttpGet]
+        public IActionResult GetFaturaDetails(int id)
+        {
+            var faturaKalem = c.FaturaKalemleri
+                               .Where(x => x.FaturaId == id)
+                               .Select(x => new
+                               {
+                                   x.Aciklama,
+                                   x.Miktar,
+                                   x.BirimFiyat,
+                                   x.Tutar
+                               }).ToList();
+            
+            return Json(faturaKalem);
         }
 
         [HttpGet]

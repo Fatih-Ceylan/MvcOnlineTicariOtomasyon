@@ -35,6 +35,9 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Context
         {
             modelBuilder.Entity<SatisHareket>()
                 .ToTable(tb => tb.UseSqlOutputClause(false));
+
+            modelBuilder.Entity<FaturaKalem>()
+               .ToTable(tb => tb.UseSqlOutputClause(false));
         }
         //todo: başka bir yöntem, arasındaki farkları araştır
         //protected override void OnModelCreating(ModelBuilder modelBuilder)

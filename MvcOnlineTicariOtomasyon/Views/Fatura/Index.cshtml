@@ -8,14 +8,13 @@
     <table class="table table-bordered">
         <tr>
             <th>Seri Sıra No</th>
-            <th>Vergi Dairesi</th>
             <th>Tarih</th>
             <th>Saat</th>
-            <th>Teslim Eden</th>
-            <th>Teslim Alan</th>
             <th>Toplam</th>
             <th>Güncelle</th>
             <th>Detaylar</th>
+            <th>Popup Liste</th>
+            <th>Yeni Kalem</th>
         </tr>
         @foreach (var k in Model)
         {
@@ -24,30 +23,110 @@
                     @k.FaturaSeriNo @k.FaturaSıraNo
                 </td>
                 <td>
-                    @k.VergiDairesi
-                </td>
-                <td>
                     @k.Tarih.ToShortDateString()
                 </td>
                 <td>
                     @k.Saat
                 </td>
                 <td>
-                    @k.TeslimEden
-                </td>
-                <td>
-                    @k.TeslimAlan
-                </td>
-                <td>
                     @k.Toplam ₺
                 </td>
                 <td><a href="/Fatura/FaturaGetir/@k.FaturaId" class="btn btn-warning">Güncelle</a></td>
                 <td><a href="/Fatura/FaturaDetay/@k.FaturaId" class="btn btn-info">Fatura Kalemleri</a></td>
+
+                <td>
+                    <a class="btn btn-info"
+                       style="background-color:cornflowerblue"
+                       data-bs-toggle="modal"
+                       data-bs-target="#Modal1"
+                       data-id="@k.FaturaId"
+                       onclick="faturaDetayGetir(this)">
+                        Popup
+                    </a>
+                </td>
+                <td><a href="/Fatura/FaturaDetay/@k.FaturaId" class="btn btn-info" style="background-color:deepskyblue">Kalem</a></td>
             </tr>
         }
     </table>
     <a href="/Fatura/FaturaEkle" class="btn btn-primary">Yeni Fatura Girişi</a>
+    <br />
+    <br />
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#Modal1">Popup Penceresi</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="Modal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Modal Ekranı</h2>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped" id="faturaTable">
+                        <thead>
+                            <tr>
+                                <th>Açıklama</th>
+                                <th>Miktar</th>
+                                <th>Birim Fiyat</th>
+                                <th>Toplam</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- AJAX ile dinamik içerik buraya eklenecek -->
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tamam</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<script>
+    // Modal'da fatura kalemlerini göstermek için bu fonksiyon kullanılacak
+    function faturaDetayGetir(element) {
+        var faturaId = element.getAttribute('data-id');
+        if (!faturaId) {
+            console.error('Fatura ID bulunamadı.');
+            return;
+        }
+        const modalBody = document.getElementById('faturaTable').getElementsByTagName('tbody')[0];
+        modalBody.innerHTML = '';
+        // Fetch API ile veri alın
+        fetch(`/Fatura/GetFaturaDetails/${faturaId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Hata: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data || data.length === 0) {
+                    throw new Error('Fatura detayları bulunamadı.');
+                }
 
+                // Modal içeriğini doldurun (faturaTable'ı güncelleyin)
+                modalBody.innerHTML = '';
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.aciklama}</td>
+                        <td>${item.miktar}</td>
+                        <td>${item.birimFiyat} ₺</td>
+                        <td>${item.tutar} ₺</td>
+                        `;
+                    modalBody.appendChild(row);
+                });
 
+            })
+            .catch(error => {
+                console.error('Hata:', error.message);
+                const modalBody = document.getElementById('faturaTable').getElementsByTagName('tbody')[0];
+                modalBody.innerHTML = `
+                <tr>
+                    <td colspan="4" class="text-danger">Fatura detayları yüklenirken bir hata oluştu: ${error.message}</td>
+                </tr>
+                `;
+                console.log(error);
+            });
+    }
+</script>
