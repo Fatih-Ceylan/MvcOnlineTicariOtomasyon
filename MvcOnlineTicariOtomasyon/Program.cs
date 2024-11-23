@@ -15,6 +15,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<DataService>();
 builder.Services.AddScoped<ClaimService>();
 builder.Services.AddScoped<SessionService>();
+builder.Services.AddScoped<FileUploadService>();
 
 builder.Services.AddDbContext<OtomasyonContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));

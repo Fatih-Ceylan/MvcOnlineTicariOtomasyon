@@ -1,17 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcOnlineTicariOtomasyon.Models.Classes;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using MvcOnlineTicariOtomasyon.Services;
+using System;
+using System.Drawing;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
     public class PersonelController : Controller
     {
         private readonly OtomasyonContext c;
+        private readonly FileUploadService _fileUploadService;
 
-        public PersonelController(OtomasyonContext c)
+        public PersonelController(OtomasyonContext c, FileUploadService fileUploadService)
         {
             this.c = c;
+            _fileUploadService = fileUploadService;
         }
 
         public IActionResult Index()
@@ -35,8 +41,13 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         }
 
         [HttpPost]
-        public IActionResult PersonelEkle(Personel p)
+        public IActionResult PersonelEkle(Personel p, IFormFile file)
         {
+            var uploadedFilePath = _fileUploadService.UploadFile(file, "images/personel");
+            if (!string.IsNullOrEmpty(uploadedFilePath))
+            {
+                p.PersonelGorsel = uploadedFilePath;
+            }
             c.Personel.Add(p);
             c.SaveChanges();
 
@@ -58,14 +69,19 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             return View("PersonelGetir", pers);
         }
 
-        public IActionResult PersonelGuncelle(Personel p)
+        public IActionResult PersonelGuncelle(Personel p, IFormFile file)
         {
             var pers = c.Personel.Find(p.PersonelId);
             if (pers is not null)
             {
+                var uploadedFilePath = _fileUploadService.UploadFile(file, "images/personel");
+                if (!string.IsNullOrEmpty(uploadedFilePath))
+                {
+                    pers.PersonelGorsel = uploadedFilePath;
+                }
                 pers.PersonelAd = p.PersonelAd;
                 pers.PersonelSoyad = p.PersonelSoyad;
-                pers.PersonelGorsel = p.PersonelGorsel;
+                //pers.PersonelGorsel = p.PersonelGorsel;
                 pers.DepartmanId = p.DepartmanId;
                 c.SaveChanges();
             }
