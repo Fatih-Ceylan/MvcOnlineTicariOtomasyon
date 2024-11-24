@@ -4,6 +4,7 @@
     ViewData["Title"] = "KategoriEkle";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <br />
 <h1>Yeni Kategori Sayfası</h1>
@@ -12,5 +13,12 @@
     @Html.LabelFor(x => x.KategoriAd)
     @Html.TextBoxFor(x => x.KategoriAd, new { @class = "form-control", style = "width:25%;" })
     <br />
-    <button class="btn btn-info">Kaydet</button>
+    <button class="btn btn-info" id="btn1">Kaydet</button>
 </form>
+
+<script src="~/lib/jquery/dist/jquery_3.6.0.min.js" crossorigin="anonymous"></script>
+<script>
+    $('#btn1').click(function () {
+        Swal.fire("Kategori Başarılı bir şekilde eklendi.");
+    })
+</script>
