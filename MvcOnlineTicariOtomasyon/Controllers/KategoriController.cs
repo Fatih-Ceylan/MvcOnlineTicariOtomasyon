@@ -24,11 +24,16 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public IActionResult KategoriEkle(Kategori k)
         {
-            _context.Add(k);
-            _context.SaveChanges();
-
-
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _context.Add(k);
+                _context.SaveChanges();
+                return Json(new { success = true, message = "Kategori başarılı bir şekilde eklendi." });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Eksik veya hatalı bilgi girdiniz." });
+            }
         }
 
         public IActionResult KategoriSil(int id)

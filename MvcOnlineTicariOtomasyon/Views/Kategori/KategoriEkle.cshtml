@@ -9,16 +9,31 @@
 <br />
 <h1>Yeni Kategori Sayfası</h1>
 <br />
-<form class="form-group" method="post">
+<form class="form-group" method="post" action="/Kategori/KategoriEkle" id="kategoriForm">
     @Html.LabelFor(x => x.KategoriAd)
     @Html.TextBoxFor(x => x.KategoriAd, new { @class = "form-control", style = "width:25%;" })
     <br />
-    <button class="btn btn-info" id="btn1">Kaydet</button>
+    <button type="button" class="btn btn-info" id="btn1">Kaydet</button>
 </form>
 
 <script src="~/lib/jquery/dist/jquery_3.6.0.min.js" crossorigin="anonymous"></script>
 <script>
     $('#btn1').click(function () {
-        Swal.fire("Kategori Başarılı bir şekilde eklendi.");
-    })
+        $.post($('#kategoriForm').attr('action'), $('#kategoriForm').serialize())
+            .done(function (response) {
+                Swal.fire({
+                    title: response.success ? "Başarılı!" : "Uyarı!",
+                    text: response.message,
+                    icon: response.success ? "success" : "error",
+                    confirmButtonText: "Tamam"
+                }).then((result) => {
+                    if (response.success && result.isConfirmed) {
+                        window.location.href = "/Kategori/Index";
+                    }
+                });
+            })
+            .fail(function () {
+                Swal.fire("Hata!", "Sunucuya bağlanılamadı. Lütfen tekrar deneyin.", "error");
+            });
+    });
 </script>
