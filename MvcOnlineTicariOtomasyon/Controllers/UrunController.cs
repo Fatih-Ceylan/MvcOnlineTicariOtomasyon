@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcOnlineTicariOtomasyon.Models.Classes;
 using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using MvcOnlineTicariOtomasyon.Models.Classes.Hareketler;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
@@ -99,5 +100,35 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             return View(degerler);
         }
 
+        [HttpGet]
+        public IActionResult SatisYap(int id)
+        {
+            List<SelectListItem> deger2 = (from x in c.Cari.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CariAd,
+                                               Value = x.CariId.ToString()
+                                           }).ToList();
+            ViewBag.CariList = deger2;
+
+            List<SelectListItem> deger3 = (from x in c.Personel.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.PersonelAd,
+                                               Value = x.PersonelId.ToString()
+                                           }).ToList();
+            ViewBag.PersonelList = deger3;
+
+            var urunId = c.Urun.Find(id)?.UrunId;
+            ViewBag.UrunId = urunId;
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SatisYap(SatisHareket p)
+        {
+            return View();
+        }
     }
 }
