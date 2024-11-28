@@ -16,7 +16,7 @@
 <br />
 <form class="form-group" method="post">
     @Html.LabelFor(x => x.Urun)
-    <input type="text" name="urunId" value="@ViewBag.UrunId" class="form-control" style="width:25%" readonly />
+    <input type="text" name="urunAdi" value="@ViewBag.UrunAdi" class="form-control" style="width:25%" readonly />
     @*@Html.TextBoxFor(x => x.UrunId, @ViewBag.UrunId, new { @class = "form-control", style = "width:25%;" })*@
     <br />
     @Html.LabelFor(x => x.Cari)
@@ -32,6 +32,7 @@
         @data_width = "25%"
     })
     <br />
+    <br />
     @Html.LabelFor(x => x.Personel)
     <br />
     @Html.DropDownListFor(x => x.PersonelId,
@@ -45,24 +46,59 @@
     })
     <br />
     @Html.LabelFor(x => x.Adet)
-    @Html.TextBoxFor(x => x.Adet, new { @class = "form-control", style = "width:25%;" })
+    @Html.TextBoxFor(x => x.Adet,
+    new
+        {
+        @class = "form-control",
+        style = "width:25%;",
+        id = "txt1",
+        type = "number",
+        min = "0",
+        max = "20",
+        placeholder = "Adet Giriniz",
+        onchange = "sum()"
+        })
     <br />
     @Html.LabelFor(x => x.Fiyat)
-    @Html.TextBoxFor(x => x.Fiyat, new { @class = "form-control", style = "width:25%;" })
+    @* @Html.TextBoxFor(x => x.Fiyat, new { @class = "form-control", style = "width:25%;", id = "txt2", onkeyup = "sum()" })*@
+    @Html.TextBox("Fiyat", (decimal?)ViewBag.SatisFiyati,
+    new
+        {
+        @class = "form-control",
+        style = "width:25%;",
+        id = "txt2",
+        onkeyup = "sum()"
+    })
+
     <br />
     @Html.LabelFor(x => x.ToplamTutar)
-    @Html.TextBoxFor(x => x.ToplamTutar, new { @class = "form-control", style = "width:25%;" })
+    <div class="input-group" style="width:25%">
+        @Html.TextBoxFor(x => x.ToplamTutar,
+        new
+            {
+            @class = "form-control",
+            @readonly = "readonly",
+            id = "txt3",
+            })
+        <div class="input-group-append">
+            <span class="input-group-text">TL</span>
+        </div>
+    </div>
     <br />
 
     <button class="btn btn-primary">Satış Yap</button>
 </form>
 
-@*<script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Bootstrap Select sınıfına sahip dropdownları başlat
-            const dropdowns = document.querySelectorAll('.selectpicker');
-            dropdowns.forEach(dropdown => {
-                bootstrap.Selectpicker.create(dropdown);
-            });
-        });
-    </script>*@
+<script>
+    function sum() {
+        var sayi1 = document.getElementById('txt1').value;
+        var sayi2 = document.getElementById('txt2').value;
+        var sonuc = (parseInt(sayi1) * parseInt(sayi2)).toFixed(2);
+        if (!isNaN(sonuc)) {
+            document.getElementById('txt3').value = sonuc;
+        }
+        else {
+            document.getElementById('txt3').value = ''; // Sayı değilse kutuyu temizle.
+        }
+    }
+</script>

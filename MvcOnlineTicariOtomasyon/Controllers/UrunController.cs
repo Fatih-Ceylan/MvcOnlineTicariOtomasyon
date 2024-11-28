@@ -103,27 +103,36 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpGet]
         public IActionResult SatisYap(int id)
         {
-            List<SelectListItem> deger2 = (from x in c.Cari.ToList()
-                                           select new SelectListItem
-                                           {
-                                               Text = x.CariAd,
-                                               Value = x.CariId.ToString()
-                                           }).ToList();
-            ViewBag.CariList = deger2;
-
-            List<SelectListItem> deger3 = (from x in c.Personel.ToList()
-                                           select new SelectListItem
-                                           {
-                                               Text = x.PersonelAd,
-                                               Value = x.PersonelId.ToString()
-                                           }).ToList();
-            ViewBag.PersonelList = deger3;
-
-            var urunId = c.Urun.Find(id)?.UrunId;
-            ViewBag.UrunId = urunId;
-
-            return View();
+            return RedirectToAction("YeniSatis", "Satis", new { id = id });
         }
+
+        //[HttpGet]
+        //public IActionResult SatisYap(int id)
+        //{
+        //    List<SelectListItem> deger2 = (from x in c.Cari.ToList()
+        //                                   select new SelectListItem
+        //                                   {
+        //                                       Text = x.CariAd,
+        //                                       Value = x.CariId.ToString()
+        //                                   }).ToList();
+        //    ViewBag.CariList = deger2;
+
+        //    List<SelectListItem> deger3 = (from x in c.Personel.ToList()
+        //                                   select new SelectListItem
+        //                                   {
+        //                                       Text = x.PersonelAd,
+        //                                       Value = x.PersonelId.ToString()
+        //                                   }).ToList();
+        //    ViewBag.PersonelList = deger3;
+
+        //    var urunAdi = c.Urun.Find(id)?.UrunAdi;
+        //    ViewBag.UrunAdi = urunAdi;
+
+        //    var sFiyat = c.Urun.Find(id)?.SatisFiyat;
+        //    ViewBag.SatisFiyati = sFiyat;
+
+        //    return View();
+        //}
 
         [HttpPost]
         public IActionResult SatisYap(SatisHareket p)

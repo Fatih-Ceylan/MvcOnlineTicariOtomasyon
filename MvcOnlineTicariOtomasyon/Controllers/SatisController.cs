@@ -14,15 +14,9 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         }
 
         [HttpGet]
-        public IActionResult YeniSatis()
+        public IActionResult YeniSatis(int? id)
         {
-            List<SelectListItem> deger = (from x in c.Urun.ToList()
-                                          select new SelectListItem
-                                          {
-                                              Text = x.UrunAdi,
-                                              Value = x.UrunId.ToString()
-                                          }).ToList();
-            ViewBag.UrunList = deger;
+          
 
             List<SelectListItem> deger2 = (from x in c.Cari.ToList()
                                            select new SelectListItem
@@ -39,6 +33,23 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                                                Value = x.PersonelId.ToString()
                                            }).ToList();
             ViewBag.PersonelList = deger3;
+
+            if (id.HasValue)
+            {
+                var urun = c.Urun.Find(id);
+                if (urun != null)
+                {
+                    ViewBag.UrunId = urun.UrunId;
+                    ViewBag.UrunAdi = urun.UrunAdi;
+                    ViewBag.SatisFiyati = urun.SatisFiyat;
+                    ViewBag.UrunList = new SelectList(c.Urun, "UrunId", "UrunAdi", urun.UrunId);
+                }
+            }
+            else
+            {
+                ViewBag.UrunList = new SelectList(c.Urun, "UrunId", "UrunAdi");
+                ViewBag.UrunId = null;
+            }
 
             return View();
         }
