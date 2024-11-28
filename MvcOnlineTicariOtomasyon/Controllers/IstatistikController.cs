@@ -62,11 +62,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var deger14 = c.SatisHareketleri.Sum(c => c.ToplamTutar).ToString();
             ViewBag.d14 = deger14;
 
-            DateTime bugun = DateTime.Today;
-            var deger15 = c.SatisHareketleri.Count(c => c.Tarih == bugun).ToString();
+            DateTime bugun = DateTime.Today.Date;
+            var deger15 = c.SatisHareketleri.Count(c => c.Tarih.Date == bugun.Date).ToString();
             ViewBag.d15 = deger15;
 
-            var deger16 = c.SatisHareketleri.Where(x => x.Tarih == bugun).Sum(c => c.ToplamTutar).ToString();
+            var deger16 = c.SatisHareketleri.Where(x => x.Tarih.Date == bugun.Date).Sum(c => c.ToplamTutar).ToString();
             ViewBag.d16 = deger16;
 
             return View();
@@ -108,7 +108,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public IActionResult Partial4()
         {
-           var sorgu = dataService.GetMarkaListesi();
+            var sorgu = dataService.GetMarkaListesi();
 
             return PartialView(sorgu);
         }
