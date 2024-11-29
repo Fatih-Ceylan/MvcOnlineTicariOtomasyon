@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MvcOnlineTicariOtomasyon.Models.Classes.Faturalar;
 using MvcOnlineTicariOtomasyon.Models.Classes.Hareketler;
+using MvcOnlineTicariOtomasyon.Models.Classes.Kargo;
 
 namespace MvcOnlineTicariOtomasyon.Models.Classes.Context
 {
@@ -21,6 +22,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Classes.Context
         public DbSet<Kategori> Kategori { get; set; }
         public DbSet<Detay> Detay { get; set; }
         public DbSet<Yapilacak> Yapilacaklar { get; set; }
+        public DbSet<KargoDetay> KargoDetay { get; set; }
+        public DbSet<KargoTakip> KargoTakip { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
