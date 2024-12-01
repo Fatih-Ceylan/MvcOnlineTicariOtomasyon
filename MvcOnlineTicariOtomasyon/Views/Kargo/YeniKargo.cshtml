@@ -5,11 +5,12 @@
 }
 
 <h1>Yeni Kargo Bilgisi Sayfası</h1>
- 
+
 <br />
 <form class="form-group" method="post">
     @Html.LabelFor(x => x.TakipKodu)
-    @Html.TextBoxFor(x => x.TakipKodu, new { @class = "form-control", style = "width:25%;" })
+    <input type="text" value="@ViewBag.TakipNo" class="form-control" style="width:25%" readonly name="TakipKodu" />
+    @*@Html.TextBoxFor(x => x.TakipKodu, new { @class = "form-control", style = "width:25%;" })*@
     <br />
     @Html.LabelFor(x => x.Personel)
     @Html.TextBoxFor(x => x.Personel, new { @class = "form-control", style = "width:25%;" })

@@ -5,7 +5,7 @@
 }
 
 <h1>Kargolar</h1>
-@using (Html.BeginForm("Index", "Urun", FormMethod.Get))
+@using (Html.BeginForm("Index", "Kargo", FormMethod.Get))
 {
     <p>
         Kargo Takip No: @Html.TextBox("p")
@@ -19,18 +19,16 @@
             <th>Personel</th>
             <th>Alıcı</th>
             <th>Tarih</th>
+            <th>Takip Kodu</th>
             <th>Detaylar</th>
         </tr>
         @foreach (var k in Model)
         {
             <tr>
-                <td>
-                    @k.Personel
-                </td>
-                <td>
-                    @k.Alici
-                </td>
+                <td>@k.Personel</td>
+                <td>@k.Alici</td>
                 <td>@k.Tarih</td>
+                <td>@k.TakipKodu</td>
                 <td><a href="/Kargo/KargoDetay/@k.KargoDetayId" class="btn btn-outline-primary">Detaylar</a></td>
             </tr>
         }
