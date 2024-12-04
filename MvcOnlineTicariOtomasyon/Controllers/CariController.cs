@@ -25,6 +25,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         {
             c.Cari.Add(cari);
             c.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
