@@ -11,6 +11,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public IActionResult Index()
         {
             var cariler = c.Cari.Where(x => x.Durum).ToList();
+
             return View(cariler);
         }
 
