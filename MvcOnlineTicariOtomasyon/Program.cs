@@ -6,7 +6,7 @@ using System.Reflection.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container. //abc123
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 //builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddHttpContextAccessor();
