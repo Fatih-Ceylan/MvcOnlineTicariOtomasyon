@@ -67,7 +67,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             }
             c.SaveChanges();
 
-            return RedirectToAction("Index"); //test4
+            return RedirectToAction("Index");
         }
 
         public IActionResult MusteriSatis(int id)
