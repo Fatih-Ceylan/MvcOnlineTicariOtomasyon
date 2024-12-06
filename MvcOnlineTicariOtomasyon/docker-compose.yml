@@ -1,0 +1,22 @@
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssword1
+    ports:
+      - "1433:1433"
+    networks:
+      - app-network
+    volumes:
+      - sqlvolume:/var/opt/mssql  # Mevcut sqlvolume'ı kullanıyoruz
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  sqlvolume:
+    external: true  # Mevcut volume'ı dışarıdan bağlamak için 'external' parametresini ekliyoruz
