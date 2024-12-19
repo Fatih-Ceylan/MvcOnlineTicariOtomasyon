@@ -25,7 +25,6 @@
     <br />
     @Html.LabelFor(x => x.Kategori.KategoriId)
     @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.kategoriList, new { @class = "form-control", style = "width:25%;" })
-    @* @Html.TextBoxFor(x => x.KategoriId, new { @class = "form-control", style = "width:25%;" }) *@
     <br />
     <div class="form-check form-switch d-flex align-items-center gap-2">
         @Html.LabelFor(x => x.Durum, new { @class = "form-check-label" })
