@@ -27,8 +27,11 @@
     @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.kategoriList, new { @class = "form-control", style = "width:25%;" })
     @* @Html.TextBoxFor(x => x.KategoriId, new { @class = "form-control", style = "width:25%;" }) *@
     <br />
-    @Html.LabelFor(x => x.Durum)
-    @Html.CheckBoxFor(x => x.Durum, new { @class = "form-control" })
+    <div class="form-check form-switch d-flex align-items-center gap-2">
+        @Html.LabelFor(x => x.Durum, new { @class = "form-check-label" })
+        @Html.CheckBoxFor(x => x.Durum, new { @class = "form-check-input" })
+    
+    </div>
     <br />
     <button class="btn btn-primary">Kaydet</button>
 </form>
