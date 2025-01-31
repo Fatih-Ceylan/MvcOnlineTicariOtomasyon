@@ -1,8 +1,8 @@
 ﻿using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MvcOnlineTicariOtomasyon.Data.Contexts;
 using MvcOnlineTicariOtomasyon.Models.Classes;
-using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 using MvcOnlineTicariOtomasyon.Services;
 using System;
 using System.Drawing;

@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MvcOnlineTicariOtomasyon.Models.Classes;
 using MvcOnlineTicariOtomasyon.Models.Classes.Faturalar;
 using MvcOnlineTicariOtomasyon.Models.Classes.Hareketler;
 using MvcOnlineTicariOtomasyon.Models.Classes.Kargo;
 
-namespace MvcOnlineTicariOtomasyon.Models.Classes.Context
+namespace MvcOnlineTicariOtomasyon.Data.Contexts
 {
     public class OtomasyonContext : DbContext
     {

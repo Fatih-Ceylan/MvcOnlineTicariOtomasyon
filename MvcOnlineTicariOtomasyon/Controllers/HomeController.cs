@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using MvcOnlineTicariOtomasyon.Data.Contexts;
 using MvcOnlineTicariOtomasyon.Models;
-using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 using System.Diagnostics;
 
 namespace MvcOnlineTicariOtomasyon.Controllers

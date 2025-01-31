@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using MvcOnlineTicariOtomasyon.Models.Classes;
-using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 using System.Security.Claims;
 using MvcOnlineTicariOtomasyon.Services;
+using MvcOnlineTicariOtomasyon.Data.Contexts;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {

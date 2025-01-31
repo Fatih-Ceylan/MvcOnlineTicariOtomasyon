@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using MvcOnlineTicariOtomasyon.Data.Contexts;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using MvcOnlineTicariOtomasyon.Data.Contexts;
 using MvcOnlineTicariOtomasyon.Services;
 using System.Reflection.Metadata;
 
@@ -37,6 +37,13 @@ builder.Services.AddSession(options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<OtomasyonContext>();
+    DbInitializer.Seed(dbContext);
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

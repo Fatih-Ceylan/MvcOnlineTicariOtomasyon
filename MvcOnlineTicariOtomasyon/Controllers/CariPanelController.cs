@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using MvcOnlineTicariOtomasyon.Data.Contexts;
 using MvcOnlineTicariOtomasyon.Services;
 
 namespace MvcOnlineTicariOtomasyon.Controllers

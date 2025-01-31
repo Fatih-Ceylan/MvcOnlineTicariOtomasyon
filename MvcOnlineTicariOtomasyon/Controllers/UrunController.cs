@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MvcOnlineTicariOtomasyon.Data.Contexts;
 using MvcOnlineTicariOtomasyon.Models.Classes;
-using MvcOnlineTicariOtomasyon.Models.Classes.Context;
 using MvcOnlineTicariOtomasyon.Models.Classes.Hareketler;
 
 namespace MvcOnlineTicariOtomasyon.Controllers

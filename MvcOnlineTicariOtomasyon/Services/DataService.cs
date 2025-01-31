@@ -1,5 +1,5 @@
-﻿using MvcOnlineTicariOtomasyon.Models.Classes;
-using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+﻿using MvcOnlineTicariOtomasyon.Data.Contexts;
+using MvcOnlineTicariOtomasyon.Models.Classes;
 using MvcOnlineTicariOtomasyon.Models.PartialClasses;
 
 namespace MvcOnlineTicariOtomasyon.Services
