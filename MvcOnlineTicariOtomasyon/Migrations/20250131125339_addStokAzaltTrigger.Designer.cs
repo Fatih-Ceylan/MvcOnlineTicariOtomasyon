@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using MvcOnlineTicariOtomasyon.Data.Contexts;
 
 #nullable disable
 
 namespace MvcOnlineTicariOtomasyon.Migrations
 {
     [DbContext(typeof(OtomasyonContext))]
-    [Migration("20241120145725_VarcharToNVarchar")]
-    partial class VarcharToNVarchar
+    [Migration("20250131125339_addStokAzaltTrigger")]
+    partial class addStokAzaltTrigger
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -216,6 +216,8 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.HasIndex("FaturaId");
 
                     b.ToTable("FaturaKalemleri");
+
+                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Gider", b =>
@@ -281,6 +283,56 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.ToTable("SatisHareketleri");
 
                     b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
+                });
+
+            modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Kargo.KargoDetay", b =>
+                {
+                    b.Property<int>("KargoDetayId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KargoDetayId"));
+
+                    b.Property<string>("Aciklama")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Alici")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Personel")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("TakipKodu")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("Tarih")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("KargoDetayId");
+
+                    b.ToTable("KargoDetay");
+                });
+
+            modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Kargo.KargoTakip", b =>
+                {
+                    b.Property<int>("KargoTakipId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KargoTakipId"));
+
+                    b.Property<string>("Aciklama")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("TakipKodu")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("Tarih")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("KargoTakipId");
+
+                    b.ToTable("KargoTakip");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Kategori", b =>

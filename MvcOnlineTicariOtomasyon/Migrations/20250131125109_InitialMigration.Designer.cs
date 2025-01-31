@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MvcOnlineTicariOtomasyon.Models.Classes.Context;
+using MvcOnlineTicariOtomasyon.Data.Contexts;
 
 #nullable disable
 
 namespace MvcOnlineTicariOtomasyon.Migrations
 {
     [DbContext(typeof(OtomasyonContext))]
-    [Migration("20241108121135_DetayAdded")]
-    partial class DetayAdded
+    [Migration("20250131125109_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,12 +39,12 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.Property<string>("KullaniciAd")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("Sifre")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("Yetki")
                         .IsRequired()
@@ -67,19 +67,23 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.Property<string>("CariAd")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("CariMail")
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("CariSehir")
                         .HasMaxLength(15)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
+
+                    b.Property<string>("CariSifre")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("CariSoyad")
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<bool>("Durum")
                         .HasColumnType("bit");
@@ -99,7 +103,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.Property<string>("DepartmanAdi")
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<bool>("Durum")
                         .HasColumnType("bit");
@@ -120,14 +124,19 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.Property<string>("UrunAd")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("UrunBilgi")
                         .IsRequired()
                         .HasMaxLength(2000)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
+
+                    b.Property<int?>("UrunId")
+                        .HasColumnType("int");
 
                     b.HasKey("DetayId");
+
+                    b.HasIndex("UrunId");
 
                     b.ToTable("Detay");
                 });
@@ -143,12 +152,12 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.Property<string>("FaturaSeriNo")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("FaturaSıraNo")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("Saat")
                         .HasMaxLength(5)
@@ -159,11 +168,11 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.Property<string>("TeslimAlan")
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("TeslimEden")
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<decimal>("Toplam")
                         .HasPrecision(18, 2)
@@ -171,7 +180,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.Property<string>("VergiDairesi")
                         .HasMaxLength(60)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.HasKey("FaturaId");
 
@@ -188,7 +197,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.Property<string>("Aciklama")
                         .HasMaxLength(100)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<decimal>("BirimFiyat")
                         .HasColumnType("decimal(18,2)");
@@ -207,6 +216,8 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.HasIndex("FaturaId");
 
                     b.ToTable("FaturaKalemleri");
+
+                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Gider", b =>
@@ -219,7 +230,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.Property<string>("Aciklama")
                         .HasMaxLength(100)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<DateTime>("Tarih")
                         .HasColumnType("datetime2");
@@ -274,6 +285,56 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
+            modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Kargo.KargoDetay", b =>
+                {
+                    b.Property<int>("KargoDetayId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KargoDetayId"));
+
+                    b.Property<string>("Aciklama")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Alici")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Personel")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("TakipKodu")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("Tarih")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("KargoDetayId");
+
+                    b.ToTable("KargoDetay");
+                });
+
+            modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Kargo.KargoTakip", b =>
+                {
+                    b.Property<int>("KargoTakipId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KargoTakipId"));
+
+                    b.Property<string>("Aciklama")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("TakipKodu")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("Tarih")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("KargoTakipId");
+
+                    b.ToTable("KargoTakip");
+                });
+
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Kategori", b =>
                 {
                     b.Property<int>("KategoriId")
@@ -285,7 +346,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
                     b.Property<string>("KategoriAd")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.HasKey("KategoriId");
 
@@ -305,15 +366,15 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.Property<string>("PersonelAd")
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("PersonelGorsel")
                         .HasMaxLength(250)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("PersonelSoyad")
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.HasKey("PersonelId");
 
@@ -341,7 +402,7 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.Property<string>("Marka")
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<decimal>("SatisFiyat")
                         .HasColumnType("decimal(18,2)");
@@ -351,17 +412,46 @@ namespace MvcOnlineTicariOtomasyon.Migrations
 
                     b.Property<string>("UrunAdi")
                         .HasMaxLength(30)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.Property<string>("UrunGorsel")
                         .HasMaxLength(250)
-                        .HasColumnType("Varchar");
+                        .HasColumnType("nvarchar");
 
                     b.HasKey("UrunId");
 
                     b.HasIndex("KategoriId");
 
                     b.ToTable("Urun");
+                });
+
+            modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Yapilacak", b =>
+                {
+                    b.Property<int>("YapilacakId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("YapilacakId"));
+
+                    b.Property<string>("Baslik")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar");
+
+                    b.Property<bool>("Durum")
+                        .HasColumnType("bit");
+
+                    b.HasKey("YapilacakId");
+
+                    b.ToTable("Yapilacaklar");
+                });
+
+            modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Detay", b =>
+                {
+                    b.HasOne("MvcOnlineTicariOtomasyon.Models.Classes.Urun", "Urun")
+                        .WithMany("UrunDetay")
+                        .HasForeignKey("UrunId");
+
+                    b.Navigation("Urun");
                 });
 
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Faturalar.FaturaKalem", b =>
@@ -452,6 +542,8 @@ namespace MvcOnlineTicariOtomasyon.Migrations
             modelBuilder.Entity("MvcOnlineTicariOtomasyon.Models.Classes.Urun", b =>
                 {
                     b.Navigation("SatisHareketleri");
+
+                    b.Navigation("UrunDetay");
                 });
 #pragma warning restore 612, 618
         }
