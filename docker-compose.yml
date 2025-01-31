@@ -2,7 +2,7 @@
 services:
   db:
     image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: sql
+    container_name: mvc5sql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=P@ssword1
