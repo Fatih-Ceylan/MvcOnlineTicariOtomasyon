@@ -40,35 +40,35 @@ namespace MvcOnlineTicariOtomasyon.Data.Contexts
                 {
                     new Urun
                     {
-                        UrunAdi = "Laptop", Marka = "Asus", Stok = 15,
+                        UrunAdi = "Laptop", Marka = "Asus", Stok = 80,
                         AlisFiyat = 12000, SatisFiyat = 15000,
                         Durum = true, UrunGorsel = "laptop.jpg",
                         Kategori = kategoriler.First()
                     },
                     new Urun
                     {
-                        UrunAdi = "Buzdolabı", Marka = "Arçelik", Stok = 10,
+                        UrunAdi = "Buzdolabı", Marka = "Arçelik", Stok = 30,
                         AlisFiyat = 8000, SatisFiyat = 10000,
                         Durum = true, UrunGorsel = "buzdolabi.jpg",
                         Kategori = kategoriler.Skip(1).First()
                     },
                     new Urun
                     {
-                        UrunAdi = "Çamaşır Makinesi", Marka = "Arçelik", Stok = 10,
+                        UrunAdi = "Çamaşır Makinesi", Marka = "Arçelik", Stok = 50,
                         AlisFiyat = 12000, SatisFiyat = 15000,
                         Durum = true, UrunGorsel = "makine.jpg",
                         Kategori = kategoriler.Skip(2).First()
                     },
                     new Urun
                     {
-                        UrunAdi = "Telefon", Marka = "Samsung", Stok = 30,
+                        UrunAdi = "Telefon", Marka = "Samsung", Stok = 40,
                         AlisFiyat = 5000, SatisFiyat = 6500,
                         Durum = true, UrunGorsel = "telefon.jpg",
                         Kategori = kategoriler.First()
                     },
                     new Urun
                     {
-                        UrunAdi = "Yatak", Marka = "İstikbal", Stok = 20,
+                        UrunAdi = "Yatak", Marka = "İstikbal", Stok = 60,
                         AlisFiyat = 2000, SatisFiyat = 3000,
                         Durum = true, UrunGorsel = "yatak.jpg",
                         Kategori = kategoriler.Skip(2).First()
@@ -181,6 +181,15 @@ namespace MvcOnlineTicariOtomasyon.Data.Contexts
                     {
                         Tarih = DateTime.Now, Adet = 2,
                         Fiyat = urunler.Skip(2).First().SatisFiyat,
+                        ToplamTutar = 3 * urunler.Skip(2).First().SatisFiyat,
+                        Urun = urunler.Skip(2).First(),
+                        Cari = cariler.Skip(1).First(),
+                        Personel = personeller.First()
+                    },
+                    new SatisHareket
+                    {
+                        Tarih = DateTime.Now, Adet = 2,
+                        Fiyat = urunler.Skip(2).First().SatisFiyat,
                         ToplamTutar = 2 * urunler.Skip(2).First().SatisFiyat,
                         Urun = urunler.Skip(2).First(),
                         Cari = cariler.Skip(2).First(),
@@ -246,6 +255,15 @@ namespace MvcOnlineTicariOtomasyon.Data.Contexts
                         Fiyat = urunler.Skip(4).First().SatisFiyat,
                         ToplamTutar = 2 * urunler.Skip(4).First().SatisFiyat,
                         Urun = urunler.Skip(4).First(),
+                        Cari = cariler.First(),
+                        Personel = personeller.Skip(4).First()
+                    },
+                     new SatisHareket
+                    {
+                        Tarih = DateTime.Now, Adet = 2,
+                        Fiyat = urunler.First().SatisFiyat,
+                        ToplamTutar = 2 * urunler.First().SatisFiyat,
+                        Urun = urunler.First(),
                         Cari = cariler.First(),
                         Personel = personeller.Skip(4).First()
                     }
